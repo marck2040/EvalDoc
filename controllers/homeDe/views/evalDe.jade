@@ -1,0 +1,978 @@
+extends layout
+block content
+	#myModal.modal.fade(tabindex="-1",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					h2.modal-title#myModalLabel
+				div.modal-body
+					h4.messageModal
+				div.modal-footer
+					a.btn.btn-danger(data-dismiss="modal",aria-hidden="true") Cerrar
+	div.row-fluid
+		div.col-md-12
+			div.row-fluid
+				div.col-md-2
+				div.col-md-8
+					div.center
+						img(src='../images/univo.jpg' width='100')
+						h3.header.smaller.blue
+							|VICERECTOR&Iacute;A ACAD&Eacute;MICA
+						p
+							label.control-label.bolder.blue
+								|INSTRUMENTO PARA EVALUACIÓN AL DESEMPEÑO DOCENTE (JEFE INMEDIATO) 					
+							label.control-label.blue
+								|OBJETIVO: 
+								|Valorar el desempeño docente en relación al accionar pedagógico que 
+								|éste realiza con el colectivo de estudiantes en la cátedra que imparte, con la finalidad 
+								|de mejorar la función académica realizada en la Facultad.
+							label.control-label.blue
+								|INDICACIÓN: Seleccione la opción que usted considere que califica al docente según 
+								|cumplimiento en el proceso de formación.
+						
+							p
+								label.control-label.blue DOCENTE: #{materias[0].emp_apellidos_nombres}
+					div.space
+					div.row-fluid
+						div.col-md-12
+							form#evalDeSubmit
+								h3.row.header.smaller.lighter.orange
+									span.col-md-8
+										i.ace-icon.fa.fa-users
+										| Asistencia
+								label.col-md-12.control-label.no-padding-right
+										|1. El docente asiste normalmente a clases y si falta lo justifica
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio1' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio1' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio1' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio1' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio1' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|2. Cumple el horario de inicio y finalización de la clase
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio2' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio2' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio2' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio2' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio2' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|3. Cumple con su planificación y horarios de consulta/asesoría.
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio3' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio3' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio3' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio3' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio3' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente								
+								label.col-md-12.control-label.no-padding-right
+										|4.   Estableció al inicio del ciclo,  objetivos, competencias, contenidos,  evaluación  y bibliografía de la materia
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio4' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio4' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio4' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio4' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio4' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|5. Presenta los contenidos del curso siguiendo el programa de la materia
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio5' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio5' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio5' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio5' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio5' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|6. Desarrolla las clases y actividades de acuerdo a la jornalización establecida al inicio del ciclo
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio6' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio6' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio6' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio6' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio6' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|7. Desarrolla los componentes prácticos según las competencias requeridas
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio7' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio7' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio7' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio7' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio7' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								h3.row.header.smaller.lighter.orange
+									span.col-md-8
+										i.ace-icon.fa.fa-book
+										| Metodologia
+								label.col-md-12.control-label.no-padding-right
+										|8. Explica los contenidos integrados en forma sencilla y comprensible.
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio8' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio8' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio8' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio8' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio8' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|9. Las clases están bien preparadas, organizadas y estructuradas
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio9' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio9' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio9' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio9' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio9' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|10. Se preocupa de los problemas de aprendizaje de sus alumnos
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio10' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio10' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio10' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio10' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio10' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|11. Motiva a los estudiantes para que participen crítica y activamente en el desarrollo de la clase
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio11' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio11' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio11' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio11' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio11' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|12. Crea una comunicación profesor-estudiante, fluida y espontánea, generando un clima de confianza.
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio12' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio12' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio12' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio12' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio12' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|13. Consigue motivación e interés en la materia
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio13' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio13' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio13' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio13' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio13' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|14. Es amable y respetuoso con los alumnos
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio14' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio14' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio14' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio14' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio14' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|15. Es accesible y está dispuesto a ayudarlos
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio15' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio15' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio15' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio15' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio15' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+											
+											input(name='idemp' type='hidden' value='#{materias[0].emp_codigo}')
+								h3.row.header.smaller.lighter.orange
+									span.col-md-8
+										i.ace-icon.fa.fa-file-text
+										| Evaluación de los aprendizajes
+								label.col-md-12.control-label.no-padding-right
+										|16. Aplica diferentes técnicas e instrumentos para evaluar el aprendizaje de los estudiantes.
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio16' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio16' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio16' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio16' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio16' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|17. Administra pruebas y actividades evaluativas que miden las competencias de los estudiantes en esa asignatura
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio17' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio17' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio17' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio17' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio17' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|18. Desarrolla con los alumnos las pruebas evaluativas después de realizadas para aclarar dudas e inquietudes
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio18' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio18' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio18' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio18' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio18' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente								
+								label.col-md-12.control-label.no-padding-right
+										|19. Registra notas y entrega las papeletas, trabajos u otros comprobantes de la evaluación en el plazo establecido
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio19' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio19' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio19' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio19' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio19' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|20.  Acepta revisar la calificación en exámenes u otras actividades evaluativas, en caso de inconsistencia o desacuerdos en la nota obtenida
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio20' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio20' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio20' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio20' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio20' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente
+								h3.row.header.smaller.lighter.orange
+									span.col-md-8
+										i.ace-icon.fa.fa-clipboard
+										| Recursos Educacionales								
+								label.col-md-12.control-label.no-padding-right
+										|21. Utiliza recursos didácticos que ayudan a comprender mejor la asignatura										
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio21' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio21' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio21' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio21' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio21' type='radio' class='ace' value='5')
+											span.lbl 
+												|  Excelente								
+								label.col-md-12.control-label.no-padding-right
+										|22. El docente motiva al uso de la biblioteca y campus virtual para reforzar sus conocimientos										
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio22' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio22' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio22' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio22' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio22' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|23.  Incentiva a los estudiantes  a participar en actividades complementarias como: seminarios, lecturas, charlas, conferencias y congresos
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio23' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio23' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio23' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio23' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio23' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								h3.row.header.smaller.lighter.orange
+									span.col-md-8
+										i.ace-icon.fa.fa-flask
+										| Investigacion								
+								label.col-md-12.control-label.no-padding-right
+										|24. Promueve la investigación en el desarrollo de la asignatura
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio24' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio24' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio24' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio24' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio24' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|25. Involucra a los estudiantes en los  proyectos de investigación, tareas u otros en  su  práctica docente
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio25' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio25' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio25' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio25' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio25' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente								
+								label.col-md-12.control-label.no-padding-right
+										|26. Explica la función de la investigación en su formación profesional
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio26' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio26' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio26' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio26' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio26' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|27.  Motiva a los estudiantes  a participar en  las ferias, concursos o encuentros de  Investigación estudiantil										
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio27' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio27' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio27' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio27' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio27' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								h3.row.header.smaller.lighter.orange
+									span.col-md-8
+										i.ace-icon.fa.fa-suitcase
+										| Proyeccion Social								
+								label.col-md-12.control-label.no-padding-right
+										|28. El docente apoya e informa a los estudiantes de todas las actividades de Proyección Social de la UNIVO
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio28' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio28' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio28' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio28' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio28' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|29.  Involucra  a los estudiantes en tareas extracurriculares con  proyectos de beneficio social.										
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio29' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio29' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio29' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio29' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio29' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								label.col-md-12.control-label.no-padding-right
+										|30. Motiva a los estudiantes a participar en los eventos de extensión universitaria  (Danza, música, teatro, deportes, entre otros.)
+										span.badge.badge-transparent
+											i.light-red.ace-icon.fa.fa-asterisk											
+								div.col-md-12
+									div.radio
+										label.line-height-1.blue
+											input(name='radio30' type='radio' class='ace' value='1')
+											span.lbl 
+												|  Deficiente
+									div.radio
+										label.line-height-1.blue
+											input(name='radio30' type='radio' class='ace' value='2')
+											span.lbl 
+												|  Regular
+									div.radio
+										label.line-height-1.blue
+											input(name='radio30' type='radio' class='ace' value='3')
+											span.lbl 
+												|  Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio30' type='radio' class='ace' value='4')
+											span.lbl 
+												|  Muy Bueno
+									div.radio
+										label.line-height-1.blue
+											input(name='radio30' type='radio' class='ace' value='5')
+											span.lbl
+												|  Excelente
+								div.clearfix
+									div.col-md-offset-4.col-md-5
+										button.btn.btn-primary
+											i.ace-icon.fa.fa-check.bigger-110
+											|Guardar
+										&nbsp; &nbsp;
+										button.btn.btn-warning(type='reset')
+											i.ace-icon.fa.fa-undo.bigger-110
+											|Borrar Todo								
+								label.col-md-12.control-label.no-padding-right
+									span.badge.badge-transparent
+										i.light-red.ace-icon.fa.fa-asterisk
+									|Los Datos son obligatorios
+				div.col-md-2

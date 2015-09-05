@@ -1,0 +1,142 @@
+homeDeModel={};
+
+homeDeModel.getData=function(user_dec,fac,callback){
+
+	if(connection)
+	{
+		
+		var sql='select distinct(emp_codigo), emp_apellidos_nombres from docentes inner join inscripciones on  mai_codemp=emp_codigo inner join alumnos on per_codigo = mai_codper inner join carreras on car_codigo=per_codcar where (car_codfac='+connection.escape(fac)+') order by emp_apellidos_nombres';
+
+		//var sql ='select alu_codper,alu_usuario from usuarios where alu_usuario='+connection.escape(user)+' '+'&& alu_pass='+connection.escape(pass);
+		connection.query(sql,function(error,row){
+			if (row.length == 0)
+			{
+				callback({msg:"error", data:""});
+				
+			}
+			else
+			{
+				callback(row);
+			}
+		});
+	}
+}
+
+homeDeModel.getResult=function(idemp,callback){
+	if(connection)
+	{
+		
+		var sql='select emp_apellidos_nombres, @p1:=ifnull(sum(encuesta.preg1),0) p1, @p2:=ifnull(sum(encuesta.preg2),0) p2, @p3:=ifnull(sum(encuesta.preg3),0) p3,@p4:=ifnull(sum(encuesta.preg4),0) p4,@p5:=ifnull(sum(encuesta.preg5),0) p5,@p6:=ifnull(sum(encuesta.preg6),0) p6,@p7:=ifnull(sum(encuesta.preg7),0) p7,@p8:=ifnull(sum(encuesta.preg8),0) p8,@p9:=ifnull(sum(encuesta.preg9),0) p9,@p10:=ifnull(sum(encuesta.preg10),0) p10,@p11:=ifnull(sum(encuesta.preg11),0) p11,@p12:=ifnull(sum(encuesta.preg12),0) p12,@p13:=ifnull(sum(encuesta.preg13),0) p13,@p14:=ifnull(sum(encuesta.preg14),0) p14,@p15:=ifnull(sum(encuesta.preg15),0) p15,@p16:=ifnull(sum(encuesta.preg16),0) p16,@p17:=ifnull(sum(encuesta.preg17),0) p17,@p18:=ifnull(sum(encuesta.preg18),0) p18,@p19:=ifnull(sum(encuesta.preg19),0) p19,@p20:=ifnull(sum(encuesta.preg20),0) p20,@p21:=ifnull(sum(encuesta.preg21),0) p21,@p22:=ifnull(sum(encuesta.preg22),0) p22,@p23:=ifnull(sum(encuesta.preg23),0) p23,@p24:=ifnull(sum(encuesta.preg24),0) p24,@p25:=ifnull(sum(encuesta.preg25),0) p25,@p26:=ifnull(sum(encuesta.preg26),0) p26,@p27:=ifnull(sum(encuesta.preg27),0) p27,@p28:=ifnull(sum(encuesta.preg28),0) p28,@p29:=ifnull(sum(encuesta.preg29),0) p29,@p30:=ifnull(sum(encuesta.preg30),0) p30,@alums:=ifnull(count(idalum),0) totAlum,@total:=@p1+@p2+@p3+@p4+@p5+@p6+@p7+@p8+@p9+@p10+@p11+@p12+@p13+@p14+@p15+@p16+@p17+@p18+@p19+@p20+@p21+@p22+@p23+@p24+@p25+@p26+@p27+@p28+@p29+@p30,@result:=@total/@alums,@notabruta:=@result/15 as notabruta,@notaneta:=@notabruta*0.4,round(@notaneta,"2")as notaneta , abs(encuesta_doc.preg1) pd1,abs(encuesta_doc.preg2) pd2,abs(encuesta_doc.preg3) pd3,abs(encuesta_doc.preg4) pd4,abs(encuesta_doc.preg5) pd5,abs(encuesta_doc.preg6) pd6,abs(encuesta_doc.preg7) pd7,abs(encuesta_doc.preg8) pd8,abs(encuesta_doc.preg9) pd9,abs(encuesta_doc.preg10) pd10,abs(encuesta_doc.preg11) pd11,abs(encuesta_doc.preg12) pd12,abs(encuesta_doc.preg13) pd13,abs(encuesta_doc.preg14) pd14,abs(encuesta_doc.preg15) pd15,abs(encuesta_doc.preg16) pd16,abs(encuesta_doc.preg17) pd17,abs(encuesta_doc.preg18) pd18,abs(encuesta_doc.preg19) pd19,abs(encuesta_doc.preg20) pd20,abs(encuesta_doc.preg21) pd21,abs(encuesta_doc.preg22) pd22,abs(encuesta_doc.preg23) pd23,abs(encuesta_doc.preg24) pd24,abs(encuesta_doc.preg25) pd25,abs(encuesta_doc.preg26) pd26,abs(encuesta_doc.preg27) pd27,abs(encuesta_doc.preg28)pd28,abs(encuesta_doc.preg29) pd29,abs(encuesta_doc.preg30) pd30, @suma:=ifnull(encuesta_doc.preg1+encuesta_doc.preg2+encuesta_doc.preg3+encuesta_doc.preg4+encuesta_doc.preg5+encuesta_doc.preg6+encuesta_doc.preg7+encuesta_doc.preg8+encuesta_doc.preg9+encuesta_doc.preg10+encuesta_doc.preg11+encuesta_doc.preg12+encuesta_doc.preg13+encuesta_doc.preg14+encuesta_doc.preg15+encuesta_doc.preg16+encuesta_doc.preg17+encuesta_doc.preg18+encuesta_doc.preg19+encuesta_doc.preg20+encuesta_doc.preg21+encuesta_doc.preg22+encuesta_doc.preg23+encuesta_doc.preg24+encuesta_doc.preg25+encuesta_doc.preg26+encuesta_doc.preg27+encuesta_doc.preg28+encuesta_doc.preg29+encuesta_doc.preg30,0),@notabrutad:= @suma/15,@notanetadoc:= @notabrutad*0.25,round(@notanetadoc,"2") notanetadoc,encuesta_dec.preg1,encuesta_dec.preg2,encuesta_dec.preg3,encuesta_dec.preg4,encuesta_dec.preg5,encuesta_dec.preg6,encuesta_dec.preg7,encuesta_dec.preg8,encuesta_dec.preg9,encuesta_dec.preg10,encuesta_dec.preg11,encuesta_dec.preg12,encuesta_dec.preg13,encuesta_dec.preg14,encuesta_dec.preg15,encuesta_dec.preg16,encuesta_dec.preg17,encuesta_dec.preg18,encuesta_dec.preg19,encuesta_dec.preg20,encuesta_dec.preg21,encuesta_dec.preg22,encuesta_dec.preg23,encuesta_dec.preg24,encuesta_dec.preg25,encuesta_dec.preg26,encuesta_dec.preg27,encuesta_dec.preg28,encuesta_dec.preg29,encuesta_dec.preg30,@suma1:=encuesta_dec.preg1+encuesta_dec.preg2+encuesta_dec.preg3+encuesta_dec.preg4+encuesta_dec.preg5+encuesta_dec.preg6+encuesta_dec.preg7+encuesta_dec.preg8+encuesta_dec.preg9+encuesta_dec.preg10+encuesta_dec.preg11+encuesta_dec.preg12+encuesta_dec.preg13+encuesta_dec.preg14+encuesta_dec.preg15+encuesta_dec.preg16+encuesta_dec.preg17+encuesta_dec.preg18+encuesta_dec.preg19+encuesta_dec.preg20+encuesta_dec.preg21+encuesta_dec.preg22+encuesta_dec.preg23+encuesta_dec.preg24+encuesta_dec.preg25+encuesta_dec.preg26+encuesta_dec.preg27+encuesta_dec.preg28+encuesta_dec.preg29+encuesta_dec.preg30,@notabrutade:= @suma1/15,@notanetade:= @notabrutade*0.35,round(@notanetade,"2") notanetadec, @total:=@notaneta+@notanetadoc+@notanetade,round(@total,"2") as total, round(((@p1/@alums)+ifnull(encuesta_doc.preg1,0)+encuesta_dec.preg1)/3,"2") as pp1,round(((@p2/@alums)+ifnull(encuesta_doc.preg2,0)+encuesta_dec.preg2)/3,"2") as pp2,round(((@p3/@alums)+ifnull(encuesta_doc.preg3,0)+encuesta_dec.preg3)/3,"2") as pp3, round(((@p4/@alums)+ifnull(encuesta_doc.preg4,0)+encuesta_dec.preg4)/3,"2") as pp4,round(((@p5/@alums)+ifnull(encuesta_doc.preg5,0)+encuesta_dec.preg5)/3,"2") as pp5,round(((@p6/@alums)+ifnull(encuesta_doc.preg6,0)+encuesta_dec.preg6)/3,"2") as pp6,round(((@p7/@alums)+ifnull(encuesta_doc.preg7,0)+encuesta_dec.preg7)/3,"2") as pp7,round(((@p8/@alums)+ifnull(encuesta_doc.preg8,0)+encuesta_dec.preg8)/3,"2") as pp8,round(((@p9/@alums)+ifnull(encuesta_doc.preg9,0)+encuesta_dec.preg9)/3,"2") as pp9,round(((@p10/@alums)+ifnull(encuesta_doc.preg10,0)+encuesta_dec.preg10)/3,"2") as pp10,round(((@p11/@alums)+ifnull(encuesta_doc.preg11,0)+encuesta_dec.preg11)/3,"2") as pp11,round(((@p12/@alums)+ifnull(encuesta_doc.preg12,0)+encuesta_dec.preg12)/3,"2") as pp12,round(((@p13/@alums)+ifnull(encuesta_doc.preg13,0)+encuesta_dec.preg13)/3,"2") as pp13,round(((@p14/@alums)+ifnull(encuesta_doc.preg14,0)+encuesta_dec.preg14)/3,"2") as pp14,round(((@p15/@alums)+ifnull(encuesta_doc.preg15,0)+encuesta_dec.preg15)/3,"2") as pp15,round(((@p16/@alums)+ifnull(encuesta_doc.preg16,0)+encuesta_dec.preg16)/3,"2") as pp16,round(((@p17/@alums)+ifnull(encuesta_doc.preg17,0)+encuesta_dec.preg17)/3,"2") as pp17,round(((@p18/@alums)+ifnull(encuesta_doc.preg18,0)+encuesta_dec.preg18)/3,"2") as pp18,round(((@p19/@alums)+ifnull(encuesta_doc.preg19,0)+encuesta_dec.preg19)/3,"2") as pp19,round(((@p20/@alums)+ifnull(encuesta_doc.preg20,0)+encuesta_dec.preg20)/3,"2") as pp20,round(((@p21/@alums)+ifnull(encuesta_doc.preg21,0)+encuesta_dec.preg21)/3,"2") as pp21,round(((@p22/@alums)+ifnull(encuesta_doc.preg22,0)+encuesta_dec.preg22)/3,"2") as pp22,round(((@p23/@alums)+ifnull(encuesta_doc.preg23,0)+encuesta_dec.preg23)/3,"2") as pp23,round(((@p24/@alums)+ifnull(encuesta_doc.preg24,0)+encuesta_dec.preg24)/3,"2") as pp24,round(((@p25/@alums)+ifnull(encuesta_doc.preg25,0)+encuesta_dec.preg25)/3,"2") as pp25,round(((@p26/@alums)+ifnull(encuesta_doc.preg26,0)+encuesta_dec.preg26)/3,"2") as pp26,round(((@p27/@alums)+ifnull(encuesta_doc.preg27,0)+encuesta_dec.preg27)/3,"2") as pp27,round(((@p28/@alums)+ifnull(encuesta_doc.preg28,0)+encuesta_dec.preg28)/3,"2") as pp28,round(((@p29/@alums)+ifnull(encuesta_doc.preg29,0)+encuesta_dec.preg29)/3,"2") as pp29,round(((@p30/@alums)+ifnull(encuesta_doc.preg30,0)+encuesta_dec.preg30)/3,"2") as pp30  from encuesta inner join docentes on docentes.emp_codigo = encuesta.idemp left join encuesta_doc on encuesta_doc.idemp= docentes.emp_codigo inner join encuesta_dec on encuesta_dec.idemp=docentes.emp_codigo where encuesta.idemp='+connection.escape(idemp);
+		connection.query(sql,function(error,row){
+			if (row.length == 0)
+			{
+				callback({msg:"error", data:""});
+				
+			}
+			else
+			{
+				callback(row);
+			}
+		});
+	}
+
+}
+
+homeDeModel.getInfo=function(idemp,callback){
+	if(connection)
+	{
+		var sql='select idemp from encuesta_dec where idemp='+connection.escape(idemp);
+		connection.query(sql,function(error,row){
+			if(row.length>=1)
+			{
+				callback({msg:"error",data:""})
+			}
+			else 
+			{
+				callback(row);
+			}
+		});
+
+	}
+
+}
+
+homeDeModel.getDoc=function(idemp,callback){
+	if(connection)
+	{
+		var sql='select emp_codigo,emp_apellidos_nombres from docentes where emp_codigo='+connection.escape(idemp);
+		connection.query(sql,function(error,row){
+			if(row.length==0)
+			{
+				callback({msg:"error",data:""})
+			}
+			else 
+			{
+				callback(row);
+			}
+		});
+
+	}
+
+}
+
+
+homeDeModel.insertInfo=function(userData,callback){
+	if(connection)
+	{
+		connection.query('insert into encuesta_dec set ?',userData,function(error,result){
+			if(result)
+			{
+				callback(result);
+			}
+			else
+			{
+				callback({msg:"error",data:""})
+			}
+
+		});
+	}
+
+}
+
+homeDeModel.getInfomation=function(fac,callback){
+	if(connection)
+	{
+		
+		var sql='select encuesta.idemp,emp_apellidos_nombres, count(*) total,if(encuesta_doc.idemp>0,"Si","No") autoevaluado,if(encuesta_dec.idemp>0,"Si","No") decano from encuesta inner join docentes_fac on  encuesta.idemp=docentes_fac.emp_codigo left join encuesta_doc on encuesta_doc.idemp=docentes_fac.emp_codigo left join encuesta_dec on encuesta_dec.idemp=docentes_fac.emp_codigo where facu='+connection.escape(fac)+' group by encuesta.idemp order by total desc';
+		
+		connection.query(sql,function(error,row){
+			if(row.length==0)
+			{
+				callback({msg:"error",data:""})
+			}
+			else 
+			{
+				callback(row);
+			}
+		});
+
+	}
+
+}
+
+homeDeModel.getTotal=function(fac,callback){
+	if(connection)
+	{
+		
+		var sql='select docentes.emp_apellidos_nombres,round((((sum(encuesta.preg1)+sum(encuesta.preg2)+sum(encuesta.preg3)+sum(encuesta.preg4)+sum(encuesta.preg5)+sum(encuesta.preg6)+sum(encuesta.preg7)+sum(encuesta.preg8)+sum(encuesta.preg9)+sum(encuesta.preg10)+sum(encuesta.preg11)+sum(encuesta.preg12)+sum(encuesta.preg13)+sum(encuesta.preg14)+sum(encuesta.preg15)+sum(encuesta.preg16)+sum(encuesta.preg17)+sum(encuesta.preg18)+sum(encuesta.preg19)+sum(encuesta.preg20)+sum(encuesta.preg21)+sum(encuesta.preg22)+sum(encuesta.preg23)+sum(encuesta.preg24)+sum(encuesta.preg25)+sum(encuesta.preg26)+sum(encuesta.preg27)+sum(encuesta.preg28)+sum(encuesta.preg29)+sum(encuesta.preg30))/count(idalum))/15)*0.4,2) notaneta,@suma:=encuesta_doc.preg1+encuesta_doc.preg2+encuesta_doc.preg3+encuesta_doc.preg4+encuesta_doc.preg5+encuesta_doc.preg6+encuesta_doc.preg7+encuesta_doc.preg8+encuesta_doc.preg9+encuesta_doc.preg10+encuesta_doc.preg11+encuesta_doc.preg12+encuesta_doc.preg13+encuesta_doc.preg14+encuesta_doc.preg15+encuesta_doc.preg16+encuesta_doc.preg17+encuesta_doc.preg18+encuesta_doc.preg19+encuesta_doc.preg20+encuesta_doc.preg21+encuesta_doc.preg22+encuesta_doc.preg23+encuesta_doc.preg24+encuesta_doc.preg25+encuesta_doc.preg26+encuesta_doc.preg27+encuesta_doc.preg28+encuesta_doc.preg29+encuesta_doc.preg30,@notabrutad:= @suma/15,@notanetadoc:= @notabrutad*0.25,@notanetadoc:=round(@notanetadoc,2) notanetadoc,@suma1:=encuesta_dec.preg1+encuesta_dec.preg2+encuesta_dec.preg3+encuesta_dec.preg4+encuesta_dec.preg5+encuesta_dec.preg6+encuesta_dec.preg7+encuesta_dec.preg8+encuesta_dec.preg9+encuesta_dec.preg10+encuesta_dec.preg11+encuesta_dec.preg12+encuesta_dec.preg13+encuesta_dec.preg14+encuesta_dec.preg15+encuesta_dec.preg16+encuesta_dec.preg17+encuesta_dec.preg18+encuesta_dec.preg19+encuesta_dec.preg20+encuesta_dec.preg21+encuesta_dec.preg22+encuesta_dec.preg23+encuesta_dec.preg24+encuesta_dec.preg25+encuesta_dec.preg26+encuesta_dec.preg27+encuesta_dec.preg28+encuesta_dec.preg29+encuesta_dec.preg30,@notabrutade:= @suma1/15,@notanetade:= @notabrutade*0.35,@notanetade:=round(@notanetade,2) notanetade,round(((((sum(encuesta.preg1)+sum(encuesta.preg2)+sum(encuesta.preg3)+sum(encuesta.preg4)+sum(encuesta.preg5)+sum(encuesta.preg6)+sum(encuesta.preg7)+sum(encuesta.preg8)+sum(encuesta.preg9)+sum(encuesta.preg10)+sum(encuesta.preg11)+sum(encuesta.preg12)+sum(encuesta.preg13)+sum(encuesta.preg14)+sum(encuesta.preg15)+sum(encuesta.preg16)+sum(encuesta.preg17)+sum(encuesta.preg18)+sum(encuesta.preg19)+sum(encuesta.preg20)+sum(encuesta.preg21)+sum(encuesta.preg22)+sum(encuesta.preg23)+sum(encuesta.preg24)+sum(encuesta.preg25)+sum(encuesta.preg26)+sum(encuesta.preg27)+sum(encuesta.preg28)+sum(encuesta.preg29)+sum(encuesta.preg30))/count(idalum))/15)*0.4)+@notanetadoc+@notanetade,2) total from encuesta  inner join docentes on emp_codigo = idemp  inner join encuesta_doc on encuesta_doc.idemp= emp_codigo  inner join encuesta_dec on encuesta_dec.idemp=emp_codigo  inner join docentes_fac on encuesta.idemp=docentes_fac.emp_codigo  where (facu='+connection.escape(fac)+') group by encuesta.idemp order by docentes.emp_apellidos_nombres';
+		
+		connection.query(sql,function(error,row){
+			if(row.length==0)
+			{
+				callback({msg:"error",data:""})
+			}
+			else 
+			{
+				callback(row);
+			}
+		});
+
+	}
+
+}

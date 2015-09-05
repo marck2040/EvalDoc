@@ -1,0 +1,25 @@
+extends layout
+block content
+	div.row-fluid
+		div.col-md-12
+			div.row-fluid
+				div.col-md-1
+					div.center
+						img(src='images/univo.jpg' width='100')
+				div.col-md-11
+					table.table.table-striped.table-bordered.table-hover#tablaDec
+						thead
+							tr
+								th
+									| Codigo
+								th
+									| Docentes
+						tbody
+							each materia, i in materias
+								tr
+									td 
+										i.ace-icon.fa.fa-edit.blue
+										a(href= '/evalDe/#{materia.emp_codigo}') #{materia.emp_codigo}
+									td 
+										i.ace-icon.fa.fa-edit.blue
+										a(href='/evalDe/#{materia.emp_codigo}') #{materia.emp_apellidos_nombres}

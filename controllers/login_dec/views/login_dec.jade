@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  //ventana modal donde mostraremos los mensajes de error
+  #myModal.modal.fade(tabindex="-1",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          h2.modal-title#myModalLabel
+        div.modal-body
+          h4.messageModal
+        div.modal-footer
+          a.btn.btn-danger(data-dismiss="modal",aria-hidden="true") Cerrar
+
+
+  div.main-container
+    div.main-content
+      div.row
+        div(class='col-sm-10 col-sm-offset-1')
+          div.login-container
+            div.center
+              h1.white
+               | UNIVERSIDAD DE ORIENTE
+              h4.blue#id-company-text 
+                 i(class='ace-icon fa fa-cogs white')
+                 |    Sistema de Evaluacion Docente
+             div.space-6
+                                
+            div.position-relative
+              div(class='login-box visible widget-box no-border')#login-box
+                div.widget-main
+                  h4(class='header blue lighter bigger')
+                    i(class='ace-icon fa fa-users blue') 
+                    |  Por Favor ingrese sus datos
+                   div.space-6
+                  form#loginDeSubmit
+                    fieldset
+                      label(class='block clearfix')
+                        span(class='block input-icon input-icon-right')
+                          input(name="username",type="text",class='form-control',placeholder="Escribe un nombre de usuario",required).username
+                          i(class='ace-icon fa fa-user')
+                      label(class='block clearfix')
+                        span(class='block input-icon input-icon-right')
+                          input(name="password",type="password",class='form-control',placeholder="Escribe un password",required).password
+                          i(class='ace-icon fa fa-lock')
+                      button.width-35.pull-right.btn.btn-sm.btn-primary
+                        i.ace-icon.fa.fa-key
+                        |  Entrar

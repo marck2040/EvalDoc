@@ -1,0 +1,24 @@
+extends layout
+block content
+	div.row-fluid
+		div.col-md-12
+			div.row-fluid
+				div.col-md-1
+					div.center
+						img(src='images/univo.jpg' width='100')
+				div.col-md-11
+					table.table.table-striped.table-bordered.table-hover
+						thead
+							tr
+								th
+									| Materias			
+						tbody
+							
+								tr
+									td 
+										i.ace-icon.fa.fa-edit.blue
+											
+										a(href= '/evalD/#{materias[0].idDoc}') Realizar la Autoevaluaci&oacute;n
+									
+
+	

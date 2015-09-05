@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+    meta(charset='utf-8')
+    title= title 
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+    link(rel='stylesheet', href='../assets/css/bootstrap.min.css')
+    link(rel='stylesheet', href='../assets/css/font-awesome.min.css')
+    link(rel='stylesheet', href='../assets/css/ace-fonts.css')
+    link(rel='stylesheet', href='../assets/css/ace.min.css' id='main-ace-style')
+    link(rel='stylesheet', href='../assets/css/ace-skins.min.css')
+    script(type='text/javascript' src='../assets/js/ace-extra.min.js')
+    //link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.min.css')
+    //link(rel='stylesheet', href='/stylesheets/style.css')
+  body.no-skin
+    div.navbar.navbar-default#navbar
+      script.
+        try{ace.settings.check('navbar','fixed')} catch(e){}
+      div.navbar-container#navbar-container
+        div.navbar-header.pull-left
+          a(href='#' class='navbar-brand')
+            samall
+              i.fa.fa-bar-chart
+              | UNIVERSIDAD DE ORIENTE
+      div.navbar-buttons.navbar-header.pull-right(role='navigation')
+        ul.nav.ace-nav
+          li.light-blue
+            a(data-toggle='dropdown' class='dropdown-toggle' href='#')
+              i.ace-icon.fa.fa-tasks
+            ul.user-menu.dropdown-menu-right.dropdown-menu.dropdown-menu-yellow.dropdown-caret.dropdown-close
+              li
+                a(href='/logout')
+                  i.ace-icon.fa.fa-power-off
+                  | Salir
+    div.main-container
+      div.main-content
+        div.page-content-area
+          div.page-header
+            h1
+              | Evaluaci&oacute;n
+              small
+                i.ace-icon.fa.fa-angle-double-right
+                | Alumnos a Docentes
+        block content
+    
+    block footer
+      script(type='text/javascript' src='../assets/js/jquery.min.js')
+      script(type='text/javascript' src='../assets/js/bootstrap.min.js')
+      script(type='text/javascript' src='../assets/js/ace-elements.min.js')
+      script(type='text/javascript' src='../assets/js/ace.min.js')
+      script(type='text/javascript' src='/javascripts/functions.js')
+      script(type='text/javascript' src='../assets/js/jquery.dataTables.min.js')
+      script(type='text/javascript' src='../assets/js/jquery.dataTables.bootstrap.js')  

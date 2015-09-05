@@ -1,0 +1,73 @@
+extends layout
+block content
+	div.row-fluid
+		div.col-md-12
+			div.row-fluid
+				div.col-md-2
+					div.center
+						img(src='images/univo.jpg' width='100')
+				div.col-md-10
+					h5.header.smaller.blue
+								| RESULTADO GENERAL DE EVALUACIÓN
+					table.table.table-striped.table-bordered.table-hover#tablaDec1
+						thead
+							tr
+								th
+									| Nombre Docente
+								th
+									| Criterios
+								th
+									| Eval. Alumnos
+								th
+									| Autoevaluacion
+								th
+									| Jefe Inmediato
+								th
+									| Resultado Final
+						tbody
+							each materia, i in materias
+								tr
+									td(align="center")
+										| #{materia.emp_apellidos_nombres}
+									td
+										table
+											tr
+												td
+													| Asistencia
+												td
+													| 	#{materia.asistencia}
+											tr
+												td
+													| Metodología
+												td
+													| 	#{materia.metodologia}
+											tr
+												td
+													| Evaluación
+												td
+													| 	#{materia.evaluacion}
+											tr
+												td
+													| Rec. Eduacacionales 
+												td
+													| 	#{materia.r_educacionales}
+											tr
+												td
+													| Investigación
+												td
+													| 	#{materia.investigacion}
+											tr
+												td
+													| Proy. Social
+												td
+													| 	#{materia.proy_social}
+
+									td(align="center")
+										| #{materia.notaneta}
+									td(align="center")
+										| #{materia.notanetadoc}
+									td(align="center")
+										| #{materia.notanetade}
+									td(align="center")
+										| #{materia.total}
+

@@ -1,0 +1,38 @@
+extends layout
+block content
+	div.row-fluid
+		div.col-md-12
+			div.row-fluid
+				div.col-md-2
+					div.center
+						img(src='images/univo.jpg' width='100')
+				div.col-md-10
+					table.table.table-striped.table-bordered.table-hover#tablaDec1
+						thead
+							tr
+								th
+									| Codigo
+								th
+									| Docentes
+								th
+									| Tot. Evaluaciones
+								th
+									| Autoevaluado
+								th
+									| Eval. Decano
+						tbody
+							each materia, i in materias
+								tr
+									td 
+										i.ace-icon.fa.fa-edit.blue
+										a(href= '/evalDe/#{materia.idemp}') #{materia.idemp}
+									td 
+										i.ace-icon.fa.fa-edit.blue
+										a(href='/evalDe/#{materia.idemp}') #{materia.emp_apellidos_nombres}
+									td
+										| #{materia.total}
+									td
+										| #{materia.autoevaluado}
+									td
+										| #{materia.decano}
+
